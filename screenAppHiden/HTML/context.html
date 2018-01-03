@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--    删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+<!--        控制状态栏显示样式-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!--        页面内容是html编码格式是utf-8-->
+    <meta content="text/html charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <link id="appicon" rel="apple-touch-icon" href="">
+    
+    <title>.</title>
+</head>
+<body>
+    <a href="addicon://" id="qbt" style="display:none"></a>
+    <span id="msg"></span>
+    <img id="imagefromLib" src="">
+        <input id="fileImage" accept="image/*" type="file" onchange="handleFiles(this.files)">
+</body>
+<script>
+    //正则表达式解析h5链接参数
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+//获取相册图片
+function handleFiles(files)
+{
+    if(files.length)
+    {
+        var file = files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function()
+        {
+            var link = document.createElement('link');
+            link.rel = 'apple-touch-icon';
+            link.href = this.result;
+            document.getElementById("appicon").href=this.result;
+        };
+        
+    }
+}
+
+// 调用方法
+var image = GetQueryString("image");
+
+if(image !=null && image.toString().length>1)
+{
+    //判断image能不能用
+    document.getElementById("imagefromLib").src=image;
+    
+}
+
+    if (window.navigator.standalone == true)
+    {
+        //通过你所知道的方式打开一个scheme，上面这句话的链接标签如：<a href="tel://xxx">
+        var lnk = document.getElementById("qbt").click();
+        //link.href = "tel://15553710601";
+        //document.getElementById("msg").innerHTML='<div style="font-size:12px">区分一下啦</div>';
+
+    }
+    else
+    {
+        document.getElementById("msg").innerHTML='<div style="font-size:12px">呐,这是一个本地的h5展示啦啦啦,不要在意</div>';
+    }
+
+
+</script>
+</html>
+

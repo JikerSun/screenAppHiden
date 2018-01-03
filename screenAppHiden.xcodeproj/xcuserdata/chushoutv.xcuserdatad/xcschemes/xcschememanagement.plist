@@ -7,7 +7,25 @@
 		<key>screenAppHiden.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5F72E96E1FF5EF7C00209775</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F72E9861FF5EF7C00209775</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F72E9911FF5EF7C00209775</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
